@@ -1,0 +1,254 @@
+/* --- 1. VARIABEL & RESET --- */
+:root {
+    --primary: #22c55e;
+    --primary-dark: #16a34a;
+    --bg-body: #f9fafb;
+    --text-main: #111827;
+    --text-muted: #6b7280;
+    --white: #ffffff;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    margin: 0; padding: 0;
+    overflow-x: hidden;
+}
+
+/* --- 2. LAYOUT CONTAINER --- */
+.menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.menu-title {
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+
+.menu-title h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+@media (min-width: 768px) {
+    .menu-title h1 { font-size: 2.5rem; }
+    .menu-container { padding: 20px 5%; }
+}
+
+/* --- 3. PRODUCT GRID (RESPONSIF) --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 Kolom di HP */
+    gap: 15px;
+}
+
+@media (min-width: 768px) {
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1024px) {
+    .product-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover { transform: translateY(-5px); }
+
+.product-image {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Membuat gambar kotak (Square) */
+}
+
+.product-image img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+.category-badge {
+    position: absolute; top: 8px; left: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 10px; border-radius: 50px;
+    font-size: 0.7rem; font-weight: 700; color: var(--primary);
+    z-index: 1;
+}
+
+.product-info {
+    padding: 12px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-name {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+.btn-add {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary);
+    color: white; border: none; border-radius: 10px;
+    font-weight: 700; cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-add:hover { background: var(--primary-dark); }
+
+/* --- 4. FLOATING CART BUTTON --- */
+.cart-floating-btn {
+    position: fixed;
+    bottom: 25px; right: 25px;
+    background: var(--primary); color: white;
+    width: 60px; height: 60px;
+    border-radius: 50%; display: flex;
+    justify-content: center; align-items: center;
+    box-shadow: 0 10px 20px rgba(34, 197, 94, 0.4);
+    cursor: pointer; z-index: 1000;
+}
+
+#cart-badge {
+    position: absolute; top: 0; right: 0;
+    background: #ef4444; color: white;
+    font-size: 12px; width: 22px; height: 22px;
+    border-radius: 50%; display: flex;
+    justify-content: center; align-items: center;
+    border: 2px solid white; font-weight: 800;
+}
+
+/* --- 5. MODAL KERANJANG (FIXED POP-UP) --- */
+.modal {
+    display: none;
+    position: fixed; 
+    z-index: 9999; 
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: white;
+    margin: 5vh auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 420px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+#closeCart {
+    position: absolute; right: 15px; top: 10px;
+    font-size: 30px; color: var(--text-muted);
+    cursor: pointer;
+}
+
+/* Item di dalam keranjang */
+.cart-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid #f3f4f6;
+}
+
+.cart-item img {
+    width: 50px; height: 50px;
+    object-fit: cover; border-radius: 8px;
+}
+
+.cart-item-info { flex-grow: 1; }
+.cart-item-info h4 { margin: 0; font-size: 14px; }
+.cart-item-info p { margin: 2px 0 0 0; font-size: 13px; font-weight: 700; color: var(--primary); }
+
+.cart-item i.fa-trash { color: #ef4444; cursor: pointer; padding: 5px; }
+
+/* Form Input Modal */
+.modal-content input, 
+.modal-content select, 
+.modal-content textarea {
+    width: 100%;
+    margin-bottom: 10px !important;
+    padding: 12px !important;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-family: inherit;
+}
+
+#qr-preview {
+    text-align: center;
+    background: #f0fdf4;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px dashed var(--primary);
+}
+
+#qr-preview img {
+    width: 140px;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.checkout-btn {
+    width: 100%; padding: 15px;
+    background: var(--primary); color: white;
+    border: none; border-radius: 12px;
+    font-weight: 800; font-size: 1rem;
+    cursor: pointer; transition: 0.3s;
+}
+
+/* --- 6. TOAST NOTIF --- */
+.toast-notif {
+    position: fixed; bottom: 100px; right: 25px;
+    background: #333; color: white;
+    padding: 12px 20px; border-radius: 10px;
+    display: none; z-index: 1001;
+    font-size: 14px;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cart-bounce { animation: bounce 0.5s ease; }
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}

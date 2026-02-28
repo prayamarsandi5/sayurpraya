@@ -1,0 +1,171 @@
+/* --- RESET & GLOBAL --- */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #f3f4f6; /* Abu-abu muda lembut */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* --- KONTAINER UTAMA --- */
+.admin-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Lebar default untuk Form */
+}
+
+/* Jika halaman Dashboard, buat lebih lebar */
+.dashboard-layout {
+    max-width: 800px; 
+}
+
+h2 {
+    color: #111827;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+h3 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #374151;
+}
+
+/* --- TOMBOL & HEADER --- */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.btn-secondary {
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    transition: 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+/* --- GRID STATISTIK (DASHBOARD) --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 Kolom di HP */
+    gap: 15px;
+}
+
+@media (min-width: 600px) {
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.stat-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.stat-card.bg-green {
+    background: #dcfce7; /* Hijau muda */
+    border-color: #bbf7d0;
+}
+
+.stat-card h3 {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin: 0 0 5px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-card .number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0;
+    color: #111827;
+}
+
+.text-green { color: #22c55e; }
+.text-orange { color: #f97316; }
+.text-red { color: #ef4444; }
+
+/* --- MENU NAVIGASI --- */
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.menu-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 2px dashed #e5e7eb;
+    padding: 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #374151;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.menu-card:hover {
+    border-color: #22c55e;
+    background: #f0fdf4;
+    transform: translateY(-2px);
+}
+
+.icon-box {
+    font-size: 24px;
+    color: #22c55e;
+    margin-bottom: 10px;
+}
+
+.menu-card h4 { margin: 0; font-weight: 700; color: #111827; }
+.menu-card p { margin: 5px 0 0 0; font-size: 0.8rem; color: #9ca3af; }
+
+/* --- FORM STYLES (DARI KODEMU SEBELUMNYA) --- */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: 600; color: #374151; }
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-family: inherit;
+    box-sizing: border-box; /* Penting agar padding tidak melebarkan elemen */
+}
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.btn-submit:hover { background-color: #16a34a; }
+
+.alert { padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; }
+.alert-success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+.alert-error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
